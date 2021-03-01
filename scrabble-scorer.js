@@ -121,9 +121,9 @@ function transform(oldArray) {
     newPointStruct[(oldPointStructure[item][j]).toLowerCase()]=Number(item);   
     } 
   }
-console.log(newPointStruct);
+
 newPointStruct[' ']=0;
-console.log(newPointStruct);
+
 return newPointStruct;
 
 }
