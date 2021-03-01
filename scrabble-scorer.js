@@ -30,7 +30,7 @@ function oldScrabbleScorer(word) {
 	return letterPoints;
  }
 
-function simpleScoreAlgorithm(word) {
+function simpleScore(word) {
 	let letterPoints = 0;
  	for (i = 0; i < word.length; i++) {
     letterPoints += 1;
@@ -38,7 +38,7 @@ function simpleScoreAlgorithm(word) {
 	return letterPoints;
  }
 
-function vowelBonusScoreAlgorithm(word) {
+function vowelBonusScore(word) {
   let vowels=['a','e','i','o','u'];
   let letterPoints=0;
   word = word.toLowerCase();
@@ -52,7 +52,7 @@ function vowelBonusScoreAlgorithm(word) {
   return letterPoints;
 }
 
-function scrabbleScorer(word){
+function scrabbleScore(word){
   	word = word.toLowerCase();
 	letterPoints = 0;
   let c=0;
@@ -76,25 +76,23 @@ function initialPrompt() {
   
 };
 
-let simpleScore = {
-  'name' : 'Simple',
-  'description' : 'One point per character',
-  'scorerFunction' : simpleScoreAlgorithm
-};
 
-let vowelBonusScore={
-  'name' : 'Vowel Bonus',
-  'description' : 'Vowels are worth 3 points',
-  'scorerFunction' : vowelBonusScoreAlgorithm
-};
 
-let scrabbleScore={
-  'name' : 'Scrabble',
-  'description' : 'Uses scrabble point system',
-  'scorerFunction' : scrabbleScorer
-};
-
-const scoringAlgorithms = [simpleScore,vowelBonusScore,scrabbleScore];
+let scoringAlgorithms = [{
+  name : 'Simple',
+  description : 'One point per character',
+  scorerFunction : simpleScore
+   
+},
+ { name : 'Vowel Bonus',
+  description : 'Vowels are worth 3 points',
+  scorerFunction : vowelBonusScore
+},
+{
+  name : 'Scrabble',
+  description : 'Uses Scrabble point system',
+  scorerFunction : scrabbleScore
+}];
 
 
 function scorerPrompt() {
@@ -103,10 +101,10 @@ function scorerPrompt() {
     console.log(`${i} - ${scoringAlgorithms[i].name}: ${scoringAlgorithms[i].description}`);
   }
   let selectedScoring=input.question("Enter 0, 1, or 2: ");
-  while(!(selectedScoring==0 || selectedScoring==1 || selectedScoring==2)){
+  /*while(!(selectedScoring==0 || selectedScoring==1 || selectedScoring==2)){
     console.log("Please enter only 0, 1 or 2");
     selectedScoring=input.question("Enter 0, 1, or 2: ");
-  }
+  }*/
   return selectedScoring;    
 }
 
@@ -122,7 +120,7 @@ function transform(oldArray) {
     } 
   }
 
-newPointStruct[' ']=0;
+//newPointStruct[' ']=0;
 
 return newPointStruct;
 
